@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const bullmq_1 = require("bullmq");
 const Like_1 = require("./Like");
 const ioredis_1 = require("ioredis");
+const Follow_1 = require("./Follow");
+const Comment_1 = require("./Comment");
 const redis = new ioredis_1.Redis();
 const worker = new bullmq_1.Worker('WorkerQueue', (job) => __awaiter(void 0, void 0, void 0, function* () {
     const queue = job.name;
@@ -19,6 +21,14 @@ const worker = new bullmq_1.Worker('WorkerQueue', (job) => __awaiter(void 0, voi
         case "likesQueue":
             console.log("running");
             yield (0, Like_1.Like)(job.data);
+            return;
+        case "followQueue":
+            console.log("got the follow request");
+            yield (0, Follow_1.Follow)(job.data);
+            return;
+        case "commentQueue":
+            console.log("got the comment reques");
+            yield (0, Comment_1.Comment)(job.data);
             return;
     }
 }), { connection: {

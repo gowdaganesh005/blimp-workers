@@ -2,6 +2,8 @@ import {  Worker } from "bullmq";
 import { Like } from "./Like";
 
 import { Redis } from "ioredis";
+import { Follow } from "./Follow";
+import { Comment } from "./Comment"
 
 
 const redis=new Redis()
@@ -14,6 +16,14 @@ const worker=new Worker('WorkerQueue', async (job)=>{
             case "likesQueue":
                 console.log("running")
                 await Like(job.data)
+                return
+            case "followQueue":
+                console.log("got the follow request")
+                await Follow(job.data)
+                return
+            case "commentQueue":
+                console.log("got the comment reques")
+                await Comment(job.data)
                 return
 
         }
