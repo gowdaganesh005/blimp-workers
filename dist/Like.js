@@ -13,6 +13,7 @@ exports.Like = Like;
 const db_1 = require("./db");
 function Like(data) {
     return __awaiter(this, void 0, void 0, function* () {
+        console.log(data);
         try {
             const exists = yield db_1.client.likes.findFirst({
                 where: {

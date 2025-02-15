@@ -1,6 +1,7 @@
 import { client } from "./db";
 
 export async function Like(data:{userId:string,postId:string,liked:boolean}){
+    console.log(data)
     try {
         const exists=await client.likes.findFirst({
             where:{

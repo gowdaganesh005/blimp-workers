@@ -13,6 +13,7 @@ exports.Comment = Comment;
 const db_1 = require("./db");
 function Comment(data) {
     return __awaiter(this, void 0, void 0, function* () {
+        console.log(data);
         try {
             yield db_1.client.comments.create({
                 data: {
