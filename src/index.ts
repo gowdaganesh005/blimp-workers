@@ -4,6 +4,9 @@ import { Like } from "./Like";
 import { Redis } from "ioredis";
 import { Follow } from "./Follow";
 import { Comment } from "./Comment"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 
 const redis=new Redis()

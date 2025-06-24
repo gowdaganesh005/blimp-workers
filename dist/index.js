@@ -8,12 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const bullmq_1 = require("bullmq");
 const Like_1 = require("./Like");
 const ioredis_1 = require("ioredis");
 const Follow_1 = require("./Follow");
 const Comment_1 = require("./Comment");
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const redis = new ioredis_1.Redis();
 const worker = new bullmq_1.Worker('WorkerQueue', (job) => __awaiter(void 0, void 0, void 0, function* () {
     const queue = job.name;
